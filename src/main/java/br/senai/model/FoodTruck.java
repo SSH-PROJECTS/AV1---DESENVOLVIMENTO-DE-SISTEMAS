@@ -1,66 +1,69 @@
 package br.senai.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name="foodTruck")
 public class FoodTruck {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(max = 150)
-    private String produto;
+    @NotNull
+    @Size(max = 100)
+    private String nome;
 
+    @Size(max = 100)
+    private String tipo;
+
+    @NotNull
     @Size(max = 10)
     private Double preco;
 
-    @Size(max = 10)
-    private int quantidade;
+    private Boolean alcoolico;
 
-    /*   GETTERS AND SETTERS   */
-
+    /*  GETTERS AND SETTERS  */
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getProduto() {
-        return produto;
+    public String getNome() {
+        return nome;
     }
-
-    public void setProduto(String produto) {
-        this.produto = produto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     public Double getPreco() {
         return preco;
     }
-
     public void setPreco(Double preco) {
         this.preco = preco;
     }
-
-    public int getQuantidade() {
-        return quantidade;
+    public Boolean getAlcoolico() {
+        return alcoolico;
+    }
+    public void setAlcoolico(Boolean alcoolico) {
+        this.alcoolico = alcoolico;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
     @Override
     public String toString() {
         return "FoodTruck{" +
                 "id=" + id +
-                ", produto='" + produto + '\'' +
+                ", nome='" + nome + '\'' +
+                ", tipo='" + tipo + '\'' +
                 ", preco=" + preco +
-                ", quantidade=" + quantidade;
+                ", alcolico=" + alcoolico +
+                '}';
     }
 }

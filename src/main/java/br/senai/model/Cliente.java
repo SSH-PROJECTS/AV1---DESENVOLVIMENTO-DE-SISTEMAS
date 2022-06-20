@@ -3,6 +3,7 @@ package br.senai.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "cliente")
@@ -24,6 +25,23 @@ public class Cliente {
 
     @ManyToMany(mappedBy = "clientes")
     private List<Evento> eventos;
+
+    @ManyToMany
+    @JoinTable(
+            name="cliente_permissao",
+            joinColumns=@JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name="permissao_id")
+    )
+    private List<Permissao> permissoes;
+
+
+    public List<Permissao> getPermissaos() {
+        return permissoes;
+    }
+
+    public void setPermissaos(List<Permissao> permissaos) {
+        this.permissoes = permissaos;
+    }
 
     public Long getId() {
         return id;
