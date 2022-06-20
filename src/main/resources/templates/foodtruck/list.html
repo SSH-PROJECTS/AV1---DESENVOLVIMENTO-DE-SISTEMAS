@@ -1,10 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../fontawesome-5.15.3/css/all.css">
+    <link rel="stylesheet" href="../bootstrap-5.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <title>NewEvent</title>
+
+    <style>
+        #editar{
+            background-color: yellow; 
+            padding: 10px; 
+            border-radius: 10px; 
+            color: #000;
+        }
+        
+        #lixo{
+            background-color: rgb(75, 75, 75); 
+            padding: 10px; 
+            border-radius: 10px; 
+            color: #fff;
+        }
+        </style>
 </head>
+
 <body>
-sdfgsdfgdsfgds
+    <header>
+        <h2>NewEvent</h2>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="/">Eventos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/evento/list">Eventos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cliente/list">Cliente</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/foodtruck/list">FoodTruck</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sobre">Sobre</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container-md mt-5 ">
+        <h1 class="color-primary">Lista de Produtos FoodTruck</h1>
+
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Preco</th>
+                    <th scope="col">Alcoólico</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${produtos}">
+                    <td th:text="${produto.id}"></td>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.tipo}"></td>
+                    <td th:text="${produto.preco}" formatarDinheiro></td>
+                    <td th:text="${produto.alcoolico}"></td>
+                    <td>
+                        <a th:href="@{'./edit/' + ${produto.id}}" style="text-decoration: none;">
+                            <i class="fa fa-edit" id="editar"></i>
+                        </a>
+                        <a th:href="@{'./delete/' + ${produto.id}}">
+                            <i class="fa fa-trash" id="lixo"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../bootstrap-5.0.0/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelectorAll('[formatarDinheiro]').forEach(e => {
+            const array = e.innerHTML.split('.')
+            if(array[1].length == 1){
+                array[1] = `${array[1] + 0}`;
+            } 
+            else{
+                array[1] = `${array[1][0] + array[1][1]}`
+            }
+            
+            e.innerHTML = `R$: ${array}`
+        })
+    </script>
+
 </body>
+
 </html>
