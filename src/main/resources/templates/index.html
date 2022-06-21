@@ -13,18 +13,21 @@
 
 <body>
 
-
 <form style="width: 500px; margin: auto; margin-top: 50px"
       class="form-login" th:action="@{/login}"method="POST">
   <div class="form-floating mb-3">
-    <input type="text"  class="form-control" id="floatingInputNome" placeholder="nome">
-    <label for="floatingInputNome">Nome</label>
+    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Usuário" required>
+    <label for="floatingInput">Usuário</label>
+  </div>
+
+  <div class="form-floating">
+    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Senha" required>
+    <label for="floatingPassword">Senha</label>
   </div>
   <div class="form-floating mb-3">
     <button type="submit" class="btn btn-success">Logar</button>
   </div>
 </form>
-
 
 <script src="./js/poppers.min.js"></script>
 <script src="./bootstrap-5.0.0/js/bootstrap.min.js"></script>

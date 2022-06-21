@@ -15,7 +15,7 @@ public class Permissao {
     private String nome;
 
     @ManyToMany(mappedBy = "permissoes")
-    private List<Cliente> usuarios;
+    private List<Usuario> usuarios;
 
     public Long getId() {
         return id;
@@ -33,11 +33,11 @@ public class Permissao {
         this.nome = nome;
     }
 
-    public List<Cliente> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Cliente> usuarios) {
+    public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 

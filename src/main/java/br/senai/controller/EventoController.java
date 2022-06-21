@@ -64,7 +64,7 @@ public class EventoController {
         }catch (Exception e){
             System.out.println("Erro ao deletar" + e.getMessage());
         }
-        return "redierct:/evento/list";
+        return "redirect:/evento/list";
     }
 
 }
