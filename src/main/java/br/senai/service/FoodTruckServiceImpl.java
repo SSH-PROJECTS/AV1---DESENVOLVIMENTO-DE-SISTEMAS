@@ -2,7 +2,6 @@ package br.senai.service;
 
 import br.senai.model.FoodTruck;
 import br.senai.repository.FoodTruckRepository;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,18 +17,17 @@ public class FoodTruckServiceImpl implements FoodTruckService{
 
     @Override
     public List<FoodTruck> findAll() {
-        return foodTruckRepository.findAll(Sort.by("tipo"));
+        return foodTruckRepository.findAll(Sort.by("id"));
     }
 
     @Override
     public FoodTruck findById(Long id) {
-        Optional productList = foodTruckRepository.findById(id);
-        if (!productList.isEmpty()){
-            return (FoodTruck) productList.get();
-        } else {
+        Optional listProdutos = foodTruckRepository.findById(id);
+        if (!listProdutos.isEmpty()){
+            return (FoodTruck) listProdutos.get();
+        } else{
             return new FoodTruck();
         }
-
     }
 
     @Override
@@ -40,6 +38,16 @@ public class FoodTruckServiceImpl implements FoodTruckService{
     @Override
     public FoodTruck findByTipo(String tipo) {
         return foodTruckRepository.findByTipo(tipo);
+    }
+
+    @Override
+    public FoodTruck findByPreco(String preco) {
+        return foodTruckRepository.findByPreco(preco);
+    }
+
+    @Override
+    public FoodTruck findByAlcoolico(Boolean alcoolico) {
+        return foodTruckRepository.findByAlcoolico(alcoolico);
     }
 
     @Override
@@ -55,7 +63,7 @@ public class FoodTruckServiceImpl implements FoodTruckService{
     public void deleteById(Long id) {
         try {
             foodTruckRepository.deleteById(id);
-        } catch (Exception e){
+        }catch (Exception e){
             throw e;
         }
     }

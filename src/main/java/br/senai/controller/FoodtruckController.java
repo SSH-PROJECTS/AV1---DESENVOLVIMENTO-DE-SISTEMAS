@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class FoodTruckController {
+public class FoodtruckController {
 
     @Autowired
     FoodTruckServiceImpl foodTruckService;
@@ -18,7 +18,7 @@ public class FoodTruckController {
     @GetMapping("/foodtruck/list")
     public String foodTruckList(Model model){
         model.addAttribute("produtos", foodTruckService.findAll());
-            return "/foodtruck/list";
+        return "/foodtruck/list";
     }
 
     /*
@@ -57,4 +57,5 @@ public class FoodTruckController {
 
         return "redirect:/foodtruck/list";
     }
+
 }
