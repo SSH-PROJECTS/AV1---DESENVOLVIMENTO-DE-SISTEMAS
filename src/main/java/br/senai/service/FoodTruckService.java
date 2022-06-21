@@ -6,7 +6,6 @@ import br.senai.model.FoodTruck;
 import java.util.List;
 
 public interface FoodTruckService {
-
     public List<FoodTruck> findAll();
     public FoodTruck findById(Long id);
     public FoodTruck findByNome(String nome);
@@ -15,6 +14,5 @@ public interface FoodTruckService {
     public FoodTruck findByAlcoolico(Boolean alcoolico);
     public FoodTruck save(FoodTruck foodTruck);
     public void deleteById(Long id);
-
-
 }
+

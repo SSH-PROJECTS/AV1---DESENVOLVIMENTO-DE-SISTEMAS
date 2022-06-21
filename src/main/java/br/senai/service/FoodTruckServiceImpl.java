@@ -23,11 +23,8 @@ public class FoodTruckServiceImpl implements FoodTruckService{
     @Override
     public FoodTruck findById(Long id) {
         Optional listProdutos = foodTruckRepository.findById(id);
-        if (!listProdutos.isEmpty()){
-            return (FoodTruck) listProdutos.get();
-        } else{
-            return new FoodTruck();
-        }
+        if (!listProdutos.isEmpty()){ return (FoodTruck) listProdutos.get(); }
+        else{ return new FoodTruck(); }
     }
 
     @Override
@@ -52,19 +49,13 @@ public class FoodTruckServiceImpl implements FoodTruckService{
 
     @Override
     public FoodTruck save(FoodTruck foodTruck) {
-        try{
-            return foodTruckRepository.save(foodTruck);
-        } catch (Exception e){
-            throw e;
-        }
+        try{ return foodTruckRepository.save(foodTruck); }
+        catch (Exception e){ throw e; }
     }
 
     @Override
     public void deleteById(Long id) {
-        try {
-            foodTruckRepository.deleteById(id);
-        }catch (Exception e){
-            throw e;
-        }
+        try { foodTruckRepository.deleteById(id); }
+        catch (Exception e){ throw e; }
     }
 }

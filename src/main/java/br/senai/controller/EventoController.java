@@ -59,11 +59,8 @@ public class EventoController {
 
     @GetMapping("/evento/delete/{id}")
     public String delete(@PathVariable long id){
-        try{
-            eventoService.deleteById(id);
-        }catch (Exception e){
-            System.out.println("Erro ao deletar" + e.getMessage());
-        }
+        try{ eventoService.deleteById(id); }
+        catch (Exception e){ System.out.println("Erro ao deletar" + e.getMessage()); }
         return "redirect:/evento/list";
     }
 

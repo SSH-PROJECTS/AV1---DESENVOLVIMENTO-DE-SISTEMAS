@@ -21,13 +21,6 @@ public class FoodtruckController {
         return "/foodtruck/list";
     }
 
-    /*
-    @GetMapping("/foodTruck/add")
-    public String foodtruckList(Model model){
-        model.addAttribute("produto", new FoodTruck());
-        return "/foodTruck/add";
-    }*/
-
     @GetMapping("/foodtruck/edit/{id}")
     public String edit(Model model, @PathVariable long id){
         model.addAttribute("produto", foodTruckService.findById(id));
@@ -42,19 +35,14 @@ public class FoodtruckController {
         }catch (Exception e){
             model.addAttribute("errorMsg", e.getMessage());
             model.addAttribute("produto", foodTruckService.findById(foodTruck.getId()));
-
             return "foodtruck/edit";
         }
     }
 
     @GetMapping("/foodtruck/delete/{id}")
     public String delete(@PathVariable long id){
-        try{
-            foodTruckService.deleteById(id);
-        } catch (Exception e){
-            System.out.println("Error" + e.getMessage());
-        }
-
+        try{ foodTruckService.deleteById(id); }
+        catch (Exception e){ System.out.println("Error" + e.getMessage()); }
         return "redirect:/foodtruck/list";
     }
 

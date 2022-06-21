@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity(name = "cliente")
 public class Cliente {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

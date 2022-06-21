@@ -1,11 +1,8 @@
 package br.senai.model;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.List;
 
 @Entity(name="usuario")
@@ -77,8 +74,5 @@ public class Usuario {
     }
 
     @Override
-    public String toString() {
-        return "Usuario: " + id + " - " + nome + ", Username:" + username;
-
-    }
+    public String toString() { return "Usuario: " + id + " - " + nome + ", Username:" + username; }
 }

@@ -26,6 +26,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/cadastro").permitAll()
                 .antMatchers("/usuario/**").permitAll()
                 .antMatchers("/bootstrap-5.0.0/**").permitAll()
                 .antMatchers("/fontawesome-5.15.3/**").permitAll()
@@ -35,7 +36,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/")
                     .defaultSuccessUrl("/cliente/list", true)
                 .permitAll()
                 .and()

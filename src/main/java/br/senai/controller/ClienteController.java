@@ -43,18 +43,14 @@ public class ClienteController {
             model.addAttribute("cliente", cliente);
             model.addAttribute("isError", true);
             model.addAttribute("errorMsg", e.getMessage());
-
             return "cliente/add";
         }
     }
 
     @GetMapping("/cliente/delete/{id}")
     public String delete(@PathVariable long id){
-        try{
-            clienteService.deleteById(id);
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-        }
+        try{ clienteService.deleteById(id); }
+        catch (Exception e) { System.out.println("Erro: " + e.getMessage()); }
         return "redirect:/cliente/list";
     }
 }

@@ -31,35 +31,22 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     public Cliente findById(Long id){
         Optional listCliente = clienteRepository.findById(id);
-        if (!listCliente.isEmpty()){
-            return (Cliente) listCliente.get();
-        } else {
-            return  new Cliente();
-        }
-
+        if (!listCliente.isEmpty()){ return (Cliente) listCliente.get(); }
+        else { return  new Cliente(); }
     }
 
     @Override
-    public Cliente findByNome
-            (String nome) {
-        return clienteRepository.findByNome(nome);
-    }
+    public Cliente findByNome(String nome) { return clienteRepository.findByNome(nome); }
 
     @Override
     public Cliente save(Cliente cliente) {
-        try {
-            return clienteRepository.save(cliente);
-        } catch (Exception e){
-            throw e;
-        }
+        try { return clienteRepository.save(cliente); }
+        catch (Exception e){ throw e; }
     }
 
     @Override
     public void deleteById(Long id){
-        try {
-            clienteRepository.deleteById(id);
-        }catch (Exception e){
-            throw e;
-        }
+        try { clienteRepository.deleteById(id); }
+        catch (Exception e){ throw e; }
     }
 }

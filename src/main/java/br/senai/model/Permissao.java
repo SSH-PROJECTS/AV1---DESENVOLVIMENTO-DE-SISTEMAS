@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity(name="permissao")
 public class Permissao {
+
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

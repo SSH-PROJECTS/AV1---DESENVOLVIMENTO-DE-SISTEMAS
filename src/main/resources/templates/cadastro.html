@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../fontawesome-5.15.3/css/all.css">
+  <link rel="stylesheet" href="../bootstrap-5.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/estilo.css">
+  <title>Cadastro</title>
+</head>
+
+<body>
+
+<form th:action="@{/cliente/save}"
+      method="post"
+      th:object="${cliente}">
+  <div class="form-floating mb-3">
+    <input type="number" th:field="*{id}" class="form-control" id="floatingInputId" placeholder="código" readonly>
+    <label for="floatingInputId">Código</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" th:field="*{nome}" required class="form-control" id="floatingInputNome" placeholder="Nome">
+    <label for="floatingInputNome">Nome</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="email" th:field="*{email}" required class="form-control" id="floatingInputEmail" placeholder="E-mail">
+    <label for="floatingInputEmail">E-mail</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" th:field="*{cpf}" required class="form-control" id="floatingInputCpf" placeholder="CPF">
+    <label for="floatingInputEmail">CPF</label>
+  </div>
+  <div class="form-floating mb-3">
+    <button type="submit" class="btn btn-success">Salvar</button>
+  </div>
+</form>
+
+<div class="container-fluid" style="display: flex; justify-content: center">
+  Já tem conta?<a href="/">Faça login</a>
+</div>
+
+<script src="./js/poppers.min.js"></script>
+<script src="./bootstrap-5.0.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
