@@ -1,6 +1,5 @@
 package br.senai.config;
 
-import br.senai.service.UsuarioService;
 import br.senai.service.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -19,15 +17,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UsuarioService usuarioService;
+    UsuarioServiceImpl usuarioService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/cadastro").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/usuario/**").permitAll()
+                .antMatchers("/endereco/**").permitAll()
                 .antMatchers("/bootstrap-5.0.0/**").permitAll()
                 .antMatchers("/fontawesome-5.15.3/**").permitAll()
                 .antMatchers("/css/**").permitAll()
@@ -36,8 +34,8 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/")
-                    .defaultSuccessUrl("/cliente/list", true)
+                .loginPage("/login")
+                .defaultSuccessUrl("/cliente/list", true)
                 .permitAll()
                 .and()
                 .rememberMe();
@@ -51,7 +49,7 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService((UserDetailsService) usuarioService);
+        authenticationProvider.setUserDetailsService(usuarioService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
@@ -61,7 +59,4 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    public static void main(String[]args) {
-        System.out.println(new BCryptPasswordEncoder().encode("ismael123"));
-    }
 }

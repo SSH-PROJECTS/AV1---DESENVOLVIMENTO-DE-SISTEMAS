@@ -13,9 +13,13 @@
 
 <body>
 
-<form th:action="@{/cliente/save}"
+<div class="container-fluid" style="display: flex; justify-content: center">
+  Já tem conta?<a href="/">Faça login</a>
+</div>
+
+<form th:action="@{/cadastro/save}"
       method="post"
-      th:object="${cliente}">
+      th:object="${usuario}">
   <div class="form-floating mb-3">
     <input type="number" th:field="*{id}" class="form-control" id="floatingInputId" placeholder="código" readonly>
     <label for="floatingInputId">Código</label>
@@ -25,21 +29,17 @@
     <label for="floatingInputNome">Nome</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" th:field="*{email}" required class="form-control" id="floatingInputEmail" placeholder="E-mail">
-    <label for="floatingInputEmail">E-mail</label>
+    <input type="text" th:field="*{username}" required class="form-control" id="floatingInputUsername" placeholder="Username">
+    <label for="floatingInputUsername">Username</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="text" th:field="*{cpf}" required class="form-control" id="floatingInputCpf" placeholder="CPF">
-    <label for="floatingInputEmail">CPF</label>
+    <input type="password" th:field="*{password}" required class="form-control" id="floatingInputPassword" placeholder="Password">
+    <label for="floatingInputPassword">Password</label>
   </div>
   <div class="form-floating mb-3">
     <button type="submit" class="btn btn-success">Salvar</button>
   </div>
 </form>
-
-<div class="container-fluid" style="display: flex; justify-content: center">
-  Já tem conta?<a href="/">Faça login</a>
-</div>
 
 <script src="./js/poppers.min.js"></script>
 <script src="./bootstrap-5.0.0/js/bootstrap.min.js"></script>

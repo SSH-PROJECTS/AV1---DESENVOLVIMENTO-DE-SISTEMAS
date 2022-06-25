@@ -10,5 +10,7 @@ public interface UsuarioService {
     public Usuario update (Long id, Usuario usuario);
     public boolean delete(Long id);
     public Optional<Usuario> read(Long id);
+
     public List<Usuario> findAll();
+    public Usuario save(Usuario usuario);
 }

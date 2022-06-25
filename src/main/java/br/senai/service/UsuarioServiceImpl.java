@@ -2,6 +2,7 @@ package br.senai.service;
 
 import br.senai.model.Permissao;
 import br.senai.model.Usuario;
+import br.senai.service.UsuarioService;
 import br.senai.repository.PermissaoRepository;
 import br.senai.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayDeque;
@@ -40,12 +42,24 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
             updateUsuario.get().setUsername(usuario.getUsername());
             updateUsuario.get().setPassword(usuario.getPassword());
             return usuarioRepository.save(updateUsuario.get());
-        } else { return null; }
+        } else {
+            return null;
+        }
     }
 
     @Override
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public Usuario save(Usuario usuario) {
+        try {
+            String newPassword = new BCryptPasswordEncoder().encode(usuario.getPassword());
+            usuario.setPassword(newPassword);
+            return usuarioRepository.save(usuario);
+        }
+        catch (Exception e){ throw e; }
     }
 
     @Override
@@ -58,20 +72,28 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
         try{
             usuarioRepository.deleteById(id);
             return usuarioRepository.findById(id).isEmpty();
-        } catch (Exception e){ return false; }
+        } catch (Exception e){
+            return false;
+        }
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByUsername(username);
-        if (usuario == null){ throw new UsernameNotFoundException("Usuario não encontrado"); }
+        if (usuario == null){
+            throw new UsernameNotFoundException("Usuario não encontrado");
+        }
+
         UserDetails user = User.withUsername(usuario.getUsername())
                 .password(usuario.getPassword())
                 .authorities(authorities(usuario)).build();
+
         return user;
     }
 
     public Collection<GrantedAuthority> authorities(Usuario usuario){
+
         Collection<GrantedAuthority> autorizacoes = new ArrayDeque<>();
         List<Permissao> permissoes = permissaoRepository.findByUsuariosIn(usuario);
         for(Permissao permissao: permissoes){
