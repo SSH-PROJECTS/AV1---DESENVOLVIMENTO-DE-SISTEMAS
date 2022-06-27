@@ -7,31 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../fontawesome-5.15.3/css/all.css">
   <link rel="stylesheet" href="../bootstrap-5.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="../css/login.css">
   <title>Login</title>
 </head>
 
 <body>
 
-<form style="width: 500px; margin: auto; margin-top: 50px"
-      class="form-login" th:action="@{/login}"method="POST">
-  <div class="form-floating mb-3">
-    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Usuário" required>
-    <label for="floatingInput">Usuário</label>
+  <div class="caixa">
+    <form class="formulario" >
+      <h2  class="titulo-login">Login</h2>
+    <div class="usuario-login">
+      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Usuário" required>
+      <label for="floatingInput">Usuário</label>
+    </div>
+
+    <div class="senha-login">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Senha" required>
+      <label for="floatingPassword">Senha</label>
+    </div>
+    <div class="botao-logar">
+      <button type="submit" class="botao-logar">Logar</button>
+    </div>
+    <div class="cadastro">
+      Não tem conta?<a href="/cadastro">Cadastre-se</a>
+    </div>
+    </form>
   </div>
 
-  <div class="form-floating">
-    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Senha" required>
-    <label for="floatingPassword">Senha</label>
-  </div>
-  <div class="form-floating mb-3">
-    <button type="submit" class="btn btn-success">Logar</button>
-  </div>
-</form>
-
-<div class="container-fluid" style="display: flex; justify-content: center">
-  Não tem conta?<a href="/cadastro">Cadastre-se</a>
-</div>
 
 <script src="./js/poppers.min.js"></script>
 <script src="./bootstrap-5.0.0/js/bootstrap.min.js"></script>
