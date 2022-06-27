@@ -12,28 +12,28 @@
 </head>
 
 <body>
-
+  <div class="fundo">
   <div class="caixa">
-    <form class="formulario" >
-      <h2  class="titulo-login">Login</h2>
+    <form class="formulario" th:action="@{/login}"method="POST">
+      <h2  class="titulo-login">LOGIN</h2>
     <div class="usuario-login">
-      <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Usuário" required>
       <label for="floatingInput">Usuário</label>
+      <input type="text" name="username" class="form-control linha" id="floatingInput" placeholder="Usuário" required>
     </div>
 
     <div class="senha-login">
-      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Senha" required>
       <label for="floatingPassword">Senha</label>
-    </div>
-    <div class="botao-logar">
-      <button type="submit" class="botao-logar">Logar</button>
+      <input type="password" name="password" class="form-control linha" id="floatingPassword" placeholder="Senha" required>
     </div>
     <div class="cadastro">
       Não tem conta?<a href="/cadastro">Cadastre-se</a>
     </div>
+    <div class="divButton" >
+      <button type="submit" class="button">Logar</button>
+    </div>
     </form>
   </div>
-
+</div>
 
 <script src="./js/poppers.min.js"></script>
 <script src="./bootstrap-5.0.0/js/bootstrap.min.js"></script>
